@@ -166,6 +166,10 @@ a:hover {
   padding: var(--spacing-xl) 0;
 }
 
+section[id] {
+  scroll-margin-top: 78px;
+}
+
 .section-dark {
   background-color: var(--color-blue);
   color: var(--color-white);
@@ -1992,4 +1996,39 @@ a:hover {
   color: var(--color-text-light);
   font-size: 1rem;
   line-height: 1.75;
+}
+
+@media (max-width: 768px) {
+  .guarantee-section {
+    padding: 0;
+    background-image:
+      linear-gradient(rgba(5, 20, 29, 0.84), rgba(5, 20, 29, 0.9)),
+      url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1000&q=82');
+    background-position: center 42%;
+    background-size: cover;
+  }
+
+  .guarantee-layout {
+    display: block;
+  }
+
+  .guarantee-image {
+    display: none;
+  }
+
+  .guarantee-text {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 4.5rem 1rem;
+    text-align: center;
+  }
+
+  .guarantee-text h2 {
+    font-size: clamp(2.35rem, 11vw, 3.4rem);
+  }
+
+  .guarantee-text p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
 }
