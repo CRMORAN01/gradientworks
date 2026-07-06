@@ -2,6 +2,10 @@
 
 Sitio corporativo de GradientWorks para servicios de Data, AI y Business Intelligence en Chile.
 
+## Sitio publicado
+
+https://crmoran01.github.io/gradientworks/
+
 ## Requisitos
 
 - Node.js 20 o superior
@@ -46,4 +50,3 @@ Las páginas legales están redactadas para el régimen chileno vigente en julio
 ## Licencia
 
 Código y contenido reservados. Consulta `LICENSE`.
-

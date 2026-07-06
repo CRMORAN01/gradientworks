@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/CRMORAN01/gradientworks.git"
   },
-  "homepage": "https://github.com/CRMORAN01/gradientworks#readme",
+  "homepage": "https://crmoran01.github.io/gradientworks/",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

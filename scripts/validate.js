@@ -30,6 +30,7 @@ for (const relativePath of htmlFiles) {
   const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
   if (!html.includes('<html lang="es">')) errors.push(`${relativePath}: missing Spanish language declaration`);
   if (!html.includes('name="viewport"')) errors.push(`${relativePath}: missing viewport metadata`);
+  if (/\b(?:href|src)="\//.test(html)) errors.push(`${relativePath}: root-relative asset breaks project hosting`);
 }
 
 const home = fs.readFileSync(path.join(root, 'public/index.html'), 'utf8');
