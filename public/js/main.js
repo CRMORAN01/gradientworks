@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initCookieBanner();
   initContactForms();
   initScrollAnimations();
-  initHeroVideo();
+  initHeroAnimation();
 });
 
 function getStoredValue(key) {
@@ -26,12 +26,119 @@ function setStoredValue(key, value) {
   }
 }
 
-// Hero Video - slow playback
-function initHeroVideo() {
-  const video = document.querySelector('.hero-video');
-  if (video) {
-    video.playbackRate = 0.6;
+// Slow, frame-rate-independent data field for the hero background.
+function initHeroAnimation() {
+  const canvas = document.querySelector('.hero-canvas');
+  if (!canvas) return;
+
+  const context = canvas.getContext('2d');
+  if (!context) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let width = 0;
+  let height = 0;
+  let frameId = null;
+  let previousTime = 0;
+  let particles = [];
+
+  function createParticle(index) {
+    return {
+      x: (index * 137.5 % 100) / 100 * width,
+      baseY: (0.12 + ((index * 47) % 76) / 100) * height,
+      radius: 1.5 + (index % 7) * 0.75,
+      speed: 5 + (index % 9) * 1.15,
+      amplitude: 5 + (index % 6) * 2.5,
+      phase: index * 0.73,
+      alpha: 0.28 + (index % 5) * 0.09
+    };
   }
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = Math.max(1, Math.round(rect.width));
+    height = Math.max(1, Math.round(rect.height));
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    const count = width < 700 ? 38 : 72;
+    particles = Array.from({ length: count }, (_, index) => createParticle(index));
+  }
+
+  function drawFlowLines(time) {
+    context.lineWidth = 0.8;
+    for (let line = 0; line < 20; line += 1) {
+      const baseY = height * (0.15 + line * 0.035);
+      const amplitude = 7 + (line % 5) * 3;
+      context.beginPath();
+
+      for (let x = -30; x <= width + 30; x += 24) {
+        const y = baseY
+          + Math.sin(x * 0.006 + time * 0.00012 + line * 0.48) * amplitude
+          + Math.cos(x * 0.0022 - time * 0.00008 + line) * 4;
+        if (x === -30) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      }
+
+      context.strokeStyle = `rgba(30, 183, 177, ${0.08 + (line % 4) * 0.03})`;
+      context.stroke();
+    }
+  }
+
+  function drawParticles(time, deltaSeconds) {
+    for (const particle of particles) {
+      particle.x += particle.speed * deltaSeconds;
+      if (particle.x > width + 20) particle.x = -20;
+
+      const y = particle.baseY + Math.sin(time * 0.00022 + particle.phase) * particle.amplitude;
+      const glow = context.createRadialGradient(
+        particle.x,
+        y,
+        0,
+        particle.x,
+        y,
+        particle.radius * 4
+      );
+      glow.addColorStop(0, `rgba(36, 214, 197, ${particle.alpha})`);
+      glow.addColorStop(0.35, `rgba(24, 164, 174, ${particle.alpha * 0.55})`);
+      glow.addColorStop(1, 'rgba(13, 103, 131, 0)');
+      context.fillStyle = glow;
+      context.beginPath();
+      context.arc(particle.x, y, particle.radius * 4, 0, Math.PI * 2);
+      context.fill();
+    }
+  }
+
+  function render(time = 0) {
+    const deltaSeconds = previousTime ? Math.min((time - previousTime) / 1000, 0.05) : 0;
+    previousTime = time;
+    context.clearRect(0, 0, width, height);
+    drawFlowLines(time);
+    drawParticles(time, deltaSeconds);
+
+    if (!reducedMotion) frameId = requestAnimationFrame(render);
+  }
+
+  resizeCanvas();
+  render();
+
+  const resizeObserver = new ResizeObserver(() => {
+    resizeCanvas();
+    if (reducedMotion) render(0);
+  });
+  resizeObserver.observe(canvas);
+
+  document.addEventListener('visibilitychange', () => {
+    if (reducedMotion) return;
+    if (document.hidden && frameId) {
+      cancelAnimationFrame(frameId);
+      frameId = null;
+    } else if (!document.hidden && !frameId) {
+      previousTime = 0;
+      frameId = requestAnimationFrame(render);
+    }
+  });
 }
 
 // Mobile Menu Toggle

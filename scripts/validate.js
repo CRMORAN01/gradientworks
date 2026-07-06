@@ -13,8 +13,7 @@ const requiredFiles = [
   'public/404.html',
   'public/thanks.html',
   'public/css/style.css',
-  'public/js/main.js',
-  'public/img/fondo_pagina_60fps.mp4'
+  'public/js/main.js'
 ];
 
 const errors = [];
@@ -34,6 +33,9 @@ for (const relativePath of htmlFiles) {
 }
 
 const home = fs.readFileSync(path.join(root, 'public/index.html'), 'utf8');
+if (!home.includes('class="hero-canvas"')) {
+  errors.push('Hero animation canvas is not configured');
+}
 if (!home.includes('https://formsubmit.co/crsaravia1@gmail.com')) {
   errors.push('Contact form destination is not configured');
 }
