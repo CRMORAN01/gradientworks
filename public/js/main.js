@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initContactForms();
   initScrollAnimations();
   initHeroAnimation();
+  initLegalNavigation();
 });
 
 function getStoredValue(key) {
@@ -24,6 +25,59 @@ function setStoredValue(key, value) {
   } catch {
     // Storage can be unavailable in private or restricted browser contexts.
   }
+}
+
+function initLegalNavigation() {
+  const navigation = document.querySelector('.legal-tabs');
+  const headings = document.querySelectorAll('.legal-content section > h2');
+  if (!navigation || headings.length === 0) return;
+
+  const label = document.createElement('span');
+  label.className = 'legal-nav-label';
+  label.textContent = 'Documentos legales';
+  navigation.prepend(label);
+
+  const tableOfContents = document.createElement('div');
+  tableOfContents.className = 'legal-on-page';
+
+  const tocLabel = document.createElement('span');
+  tocLabel.textContent = 'En esta página';
+  tableOfContents.appendChild(tocLabel);
+
+  const list = document.createElement('ol');
+  const links = new Map();
+
+  headings.forEach((heading, index) => {
+    const section = heading.closest('section');
+    if (!section) return;
+    if (!section.id) section.id = `seccion-${index + 1}`;
+
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${section.id}`;
+    link.textContent = heading.textContent.replace(/^\d+\.\s*/, '');
+    item.appendChild(link);
+    list.appendChild(item);
+    links.set(section.id, link);
+  });
+
+  tableOfContents.appendChild(list);
+  navigation.appendChild(tableOfContents);
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      links.forEach(link => link.classList.remove('is-active'));
+      links.get(entry.target.id)?.classList.add('is-active');
+    }
+  }, {
+    rootMargin: '-25% 0px -65% 0px'
+  });
+
+  links.forEach((_link, id) => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
 }
 
 // Slow, frame-rate-independent data field for the hero background.
