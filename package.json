@@ -1,0 +1,23 @@
+{
+  "name": "gradientworks",
+  "version": "1.0.0",
+  "description": "Sitio corporativo de GradientWorks para servicios de Data, AI y Business Intelligence en Chile.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CRMORAN01/gradientworks.git"
+  },
+  "homepage": "https://github.com/CRMORAN01/gradientworks#readme",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check public/js/main.js && node scripts/validate.js",
+    "test": "npm run check"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

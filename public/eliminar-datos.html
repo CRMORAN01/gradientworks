@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario para ejercer derechos sobre datos personales ante GradientWorks.">
+  <title>Ejercer derechos sobre mis datos | GradientWorks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar"><div class="container navbar-container"><a href="/" class="navbar-brand">Gradient<span>Works</span></a><button class="navbar-toggle" aria-label="Abrir menú"><span>&#9776;</span></button><ul class="navbar-menu"><li><a href="/#servicios">Servicios</a></li><li><a href="/#mision">Nosotros</a></li><li><a href="/#garantia">Garantía</a></li><li><a href="/#faq">FAQ</a></li><li><a href="/#contacto">Contacto</a></li></ul></div></nav>
+
+  <main class="legal-page">
+    <div class="container legal-container">
+      <nav class="legal-tabs" aria-label="Documentos legales"><a href="/privacidad">Privacidad</a><a href="/terminos">Términos</a><a href="/cookies">Cookies</a><a href="/eliminar-datos" aria-current="page">Tus derechos</a></nav>
+
+      <article class="legal-content">
+        <header class="legal-header">
+          <span class="legal-kicker">Control de tus datos</span>
+          <h1>Ejercer mis derechos</h1>
+          <p class="legal-lead">Solicita acceso, rectificación, eliminación, bloqueo, oposición o portabilidad mediante un proceso claro y gratuito.</p>
+          <p class="legal-updated">Versión 1.0 · Última actualización: 5 de julio de 2026</p>
+        </header>
+
+        <div class="legal-notice"><strong>Privacidad desde el diseño.</strong> No adjuntes cédulas, contraseñas, datos bancarios ni información sensible. Si necesitamos verificar identidad, te indicaremos un mecanismo proporcional y seguro.</div>
+
+        <section>
+          <h2>1. Derechos disponibles</h2>
+          <div class="rights-grid">
+            <div><strong>Acceso e información</strong><span>Conocer si tratamos tus datos, su origen, finalidad y destinatarios.</span></div>
+            <div><strong>Rectificación</strong><span>Corregir datos inexactos, desactualizados o incompletos.</span></div>
+            <div><strong>Eliminación</strong><span>Solicitar supresión cuando corresponda legalmente.</span></div>
+            <div><strong>Bloqueo</strong><span>Suspender temporalmente determinadas operaciones.</span></div>
+            <div><strong>Oposición</strong><span>Objetar tratamientos en los casos admitidos por la normativa.</span></div>
+            <div><strong>Portabilidad</strong><span>Recibir datos aplicables en formato electrónico estructurado.</span></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. Procedimiento y plazos</h2>
+          <ol class="legal-steps">
+            <li><strong>Envía la solicitud.</strong> Completa el formulario con el correo que utilizaste al contactarnos.</li>
+            <li><strong>Verificamos identidad.</strong> Podremos pedir información adicional solo si es necesaria para evitar entregar o modificar datos de otra persona.</li>
+            <li><strong>Respondemos por escrito.</strong> Informaremos la medida adoptada o los fundamentos de una eventual negativa.</li>
+          </ol>
+          <p>Hasta el 30 de noviembre de 2026 nos pronunciaremos dentro de dos días hábiles conforme al artículo 16 de la Ley N.º 19.628. Desde el 1 de diciembre de 2026 aplicará el plazo general de 30 días corridos establecido por la reforma, con la prórroga legal cuando corresponda.</p>
+          <p>La eliminación puede no proceder respecto de información que deba conservarse por mandato legal, para cumplir obligaciones contractuales o para formular, ejercer o defender reclamaciones. En ese caso explicaremos el motivo y limitaremos el tratamiento.</p>
+        </section>
+
+        <section class="rights-form-section">
+          <div class="rights-form-heading">
+            <span class="legal-kicker">Solicitud segura</span>
+            <h2>3. Formulario de derechos</h2>
+            <p>Usa un correo al que tengas acceso para recibir la respuesta.</p>
+          </div>
+
+          <form id="deletionForm" class="deletion-form" action="https://formsubmit.co/crsaravia1@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Solicitud de derechos sobre datos - GradientWorks">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Nombre y apellido">
+              </div>
+              <div class="form-group">
+                <label for="email">Correo utilizado *</label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="nombre@empresa.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tipo-solicitud">Derecho que deseas ejercer *</label>
+              <select id="tipo-solicitud" name="tipo_solicitud" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Acceso e información">Acceso e información</option>
+                <option value="Rectificación">Rectificación</option>
+                <option value="Eliminación">Eliminación de datos</option>
+                <option value="Bloqueo">Bloqueo temporal</option>
+                <option value="Oposición">Oposición al tratamiento</option>
+                <option value="Portabilidad">Portabilidad</option>
+                <option value="Retiro de consentimiento">Retiro del consentimiento</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion">Detalle de la solicitud *</label>
+              <textarea id="descripcion" name="descripcion" required minlength="20" placeholder="Indica el contexto y los datos o tratamiento al que se refiere tu solicitud."></textarea>
+            </div>
+
+            <label class="checkbox-label rights-consent">
+              <input type="checkbox" name="declaracion" required>
+              <span>Declaro que esta solicitud se refiere a mis propios datos o que cuento con representación suficiente.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary form-submit">Enviar solicitud</button>
+          </form>
+
+          <div id="formSuccess" class="form-success" style="display: none;">
+            <h3>Solicitud recibida</h3>
+            <p>Conserva la confirmación. Responderemos al correo informado dentro del plazo legal aplicable.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>4. Consultas</h2>
+          <p>Mientras se habilita el canal corporativo dedicado, todas las solicitudes se reciben mediante este formulario. Para información general consulta nuestra <a href="/privacidad">Política de Privacidad</a>.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-content"><div class="footer-brand"><h3>Gradient<span>Works</span></h3><p>Reducimos el error y multiplicamos el valor. Crezcamos juntos.</p></div><div class="footer-links"><h4>Servicios</h4><ul><li><a href="/#servicios">Business Intelligence</a></li><li><a href="/#servicios">Inteligencia Artificial</a></li><li><a href="/#servicios">Cloud Computing</a></li><li><a href="/#servicios">DataOps</a></li></ul></div><div class="footer-links"><h4>Legal</h4><ul><li><a href="/privacidad">Política de Privacidad</a></li><li><a href="/terminos">Términos y Condiciones</a></li><li><a href="/cookies">Política de Cookies</a></li><li><a href="/eliminar-datos">Ejercer mis derechos</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 GradientWorks. Todos los derechos reservados.</p></div></div></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
